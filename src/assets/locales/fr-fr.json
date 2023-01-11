@@ -1,0 +1,15 @@
+{
+    "app": {
+        "header": "Localisation",
+        "greeting": "Bonjour le monde !",
+        "example": "Combien ça coûte ?"
+    },
+    "home": {
+        "header": "Page d'accueil",
+        "example": "Trois Amis",
+        "list": ["puce 1", "puce 2", "puce 3"]
+    }
+    
+}
+
+

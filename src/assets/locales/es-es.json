@@ -1,0 +1,13 @@
+{
+    "app": {
+        "header": "Localización",
+        "greeting": "Hola Mundo !",
+        "example": "¿Cuánto cuesta?"
+    },
+    "home": {
+        "header": "Página de inicio",
+        "example": "Tres Amigos",
+        "list": ["viñeta 1", "viñeta 2", "viñeta 3"]
+    }
+    
+}

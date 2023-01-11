@@ -1,0 +1,20 @@
+{
+    "app": {
+        "header": {
+            "en-gb": "Localisation",
+            "es-es": "Localización",
+            "fr-fr": "Localisation"
+        },
+        "greeting": {
+            "en-gb": "Hello World!",
+            "es-es": "Hola Mundo !",
+            "fr-fr": "Bonjour le monde !"
+        },
+        "example": {
+            "en-gb": "How much does it cost?",
+            "es-es": "¿Cuánto cuesta?",
+            "fr-fr": "Combien ça coûte ?"
+        }
+    }
+
+}

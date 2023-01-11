@@ -1,0 +1,8 @@
+{
+    "locale": "en-gb",
+    "app": {
+        "header": "Localisation",
+        "greeting": "Hello World!",
+        "example": "How much does it cost?"
+    }
+}
