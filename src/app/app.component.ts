@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LocaleService } from './locale/locale.service';
+import { Locale } from './locale/locale';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +10,27 @@ import { LocaleService } from './locale/locale.service';
 export class AppComponent {
   title = 'localisation';
 
-  locale: string = "";
+  defaultLocale: string = "";
 
   text!: Locale;
+
+  browserLocale: string | undefined = this.defaultLocale;
+
+  selectedValue: string = "";
 
   constructor(private localeService: LocaleService) { }
 
   ngOnInit(): void {
-    this.locale = "en-gb";
+    this.defaultLocale = "en-gb";
+    this.browserLocale = this.localeService.getBrowserLocale();
 
-    this.localeService.getTranslation(this.locale)
+    if (this.browserLocale === undefined) {
+      this.browserLocale = this.defaultLocale;
+    }
+
+    this.selectedValue = this.browserLocale;
+
+    this.localeService.getTranslation(this.browserLocale)
     .subscribe({
       next: (text) => this.text = text
     });
@@ -33,17 +45,8 @@ export class AppComponent {
     console.log(`${event.target.value}, ${JSON.stringify(this.text)}`);
   }
 
-}
+  setLanguageSwitcher() {
 
-export interface Locale {
-  app: {
-    header: string,
-    greeting: string,
-    example: string
-  },
-  home: {
-    header: string,
-    example: string,
-    list: string[]
   }
+
 }

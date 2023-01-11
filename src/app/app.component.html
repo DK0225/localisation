@@ -1,4 +1,4 @@
-<select name="locale" id="locale" (change)="selectLocale($event)">
+<select name="locale" id="locale" (change)="selectLocale($event)" [value]="this.selectedValue">
   <option value="en-gb">English</option>
   <option value="es-es">Spanish</option>
   <option value="fr-fr">French</option>
@@ -10,4 +10,8 @@
 <div>
   <p>{{ this.text.app.greeting }}</p>
   <p>{{ this.text.app.example }}</p>
+</div>
+
+<div>
+  <p>Browser Locale: {{ this.browserLocale }}</p>
 </div>
