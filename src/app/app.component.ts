@@ -40,14 +40,6 @@ export class AppComponent {
 
   }
 
-  selectLocale(event: any) {
-    this.localeService.setLocale(event.target.value)
-      .subscribe({
-        next: (text) => this.text = text
-      });
-    console.log(`${event.target.value}, ${JSON.stringify(this.text)}`);
-  }
-
   setLanguageSwitcher(event: any) {
     this.translate.setDefaultLang(event.target.value);
     this.translate.use(event.target.value)
