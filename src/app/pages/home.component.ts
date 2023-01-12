@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +16,11 @@ export class HomeComponent {
 
     this.defaultLocale = translate.getDefaultLang();
     console.log(`Home: ${this.defaultLocale}`);
+
+    this.translate.onLangChange
+    .subscribe((event: LangChangeEvent) => {
+      console.log(event.lang)
+    });
 
   }
 
