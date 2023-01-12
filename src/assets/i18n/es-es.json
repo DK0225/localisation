@@ -8,6 +8,10 @@
         "header": "Página de inicio",
         "example": "Tres Amigos",
         "list": ["viñeta 1", "viñeta 2", "viñeta 3"]
+    },
+    "about": {
+        "header": "Acerca de",
+        "example": "Reino Unido"
     }
     
 }

@@ -1,17 +1,28 @@
-<select name="locale" id="locale" (change)="selectLocale($event)" [value]="this.selectedValue">
+<select name="locale" id="locale" (change)="setLanguageSwitcher($event)" [value]="this.selectedValue">
   <option value="en-gb">English</option>
   <option value="es-es">Spanish</option>
   <option value="fr-fr">French</option>
 </select>
 
+<div>
+  <nav>
+    <a [routerLink]="['/home']">Home</a>
+    <a [routerLink]="['/about']">About</a>
+  </nav>
+</div>
 
-<h1>{{ this.text.app.header }}</h1>
+
+<h1>{{ 'app.header' | translate }}</h1>
 
 <div>
-  <p>{{ this.text.app.greeting }}</p>
-  <p>{{ this.text.app.example }}</p>
+  <p>{{ 'app.greeting' | translate }}</p>
+  <p>{{ 'app.example' | translate }}</p>
 </div>
 
 <div>
   <p>Browser Locale: {{ this.browserLocale }}</p>
+</div>
+
+<div>
+  <router-outlet></router-outlet>
 </div>

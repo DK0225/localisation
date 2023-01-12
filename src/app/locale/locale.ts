@@ -7,6 +7,6 @@ export interface Locale {
     home: {
       header: string,
       example: string,
-      list: string[]
+      list: string
     }
   }
