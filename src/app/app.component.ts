@@ -27,21 +27,29 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    this.defaultLocale = "en-gb";
-    this.browserLocale = this.localeService.getBrowserLocale();
+    this.defaultLocale = this.localeService.getDefaultLocale();
 
-    if (this.browserLocale === undefined) {
-      this.browserLocale = this.defaultLocale;
-    }
+    this.browserLocale = this.defaultLocale;
 
-    this.selectedValue = this.browserLocale;
+    // if (this.browserLocale === undefined) {
+    //   this.browserLocale = this.defaultLocale;
+    // }
+
+    // this.selectedValue = this.browserLocale;
+
+    this.selectedValue = this.defaultLocale;
 
     this.translate.use(this.selectedValue);
 
   }
 
+  ngOnDestroy(): void {
+    this.localeService.tearDown();
+  }
+
   setLanguageSwitcher(event: any) {
     this.translate.setDefaultLang(event.target.value);
+    this.localeService.setLocale(event.target.value);
     this.translate.use(event.target.value)
   }
 

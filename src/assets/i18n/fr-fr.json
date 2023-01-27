@@ -7,7 +7,7 @@
     "home": {
         "header": "Page d'accueil",
         "example": "Trois Amis",
-        "list": "[puce 1, puce 2, puce 3]"
+        "list": ["puce 1", "puce 2", "puce 3"]
     },
     "about": {
         "header": "À propos de",

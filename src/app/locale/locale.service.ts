@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from 'rxjs';
 
 declare interface Window {
+  localStorage: any;
+  location: any;
   navigator: any;
 }
 
@@ -40,8 +42,33 @@ export class LocaleService {
     return browserLocale.toLowerCase();
   }
 
-  setLocale(locale: string): Observable<any> {
+  public getDefaultLocale(): string {
+    let browserLocale = this.getBrowserLocale();
+    console.log(browserLocale);
+
+    if (browserLocale !== undefined) {
+      if (window.localStorage.getItem('localisation-currentLocale') != browserLocale) {
+        window.localStorage.setItem('localisation-currentLocale', browserLocale);
+      }
+      return window.localStorage.getItem('localisation-currentLocale');
+    }
+
+    return "";
+  }
+
+  public setLocale(locale: string): Observable<any> {
+    window.localStorage.setItem('localisation-currentLocale', locale);
+    // window.location.reload();
     return this.getTranslation(locale);
+  }
+
+  public getLocale(): string {
+    return window.localStorage.getItem('localisation-currentLocale');
+  }
+
+  public tearDown(): void {
+    window.localStorage.removeItem('localisation-currentLocale');
+    window.localStorage.clear();
   }
 
 }

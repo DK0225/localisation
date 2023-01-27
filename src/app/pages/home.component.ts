@@ -25,7 +25,7 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.translate.get('home.list')
+    this.translate.stream('home.list')
       .subscribe((translation: string[]) => {
         this.list = translation
       });
