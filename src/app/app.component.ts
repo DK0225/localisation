@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LocaleService } from './locale/locale.service';
 import { Locale } from './locale/locale';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +19,12 @@ export class AppComponent {
 
   selectedValue: string = "";
 
-  constructor(private localeService: LocaleService, private translate: TranslateService) { 
-
-    translate.setDefaultLang('en-gb');
-    translate.use('en-gb');
-
+  constructor(private localeService: LocaleService, private translocoService: TranslocoService) { 
+    this.browserLocale = this.localeService.getBrowserLocale();
+    if (this.browserLocale) {
+      translocoService.setDefaultLang(this.browserLocale);
+      translocoService.setActiveLang(this.browserLocale);
+    }
   }
 
   ngOnInit(): void {
@@ -31,15 +32,7 @@ export class AppComponent {
 
     this.browserLocale = this.defaultLocale;
 
-    // if (this.browserLocale === undefined) {
-    //   this.browserLocale = this.defaultLocale;
-    // }
-
-    // this.selectedValue = this.browserLocale;
-
-    this.selectedValue = this.defaultLocale;
-
-    this.translate.use(this.selectedValue);
+    this.selectedValue = this.localeService.getDefaultLocale();
 
   }
 
@@ -48,9 +41,7 @@ export class AppComponent {
   }
 
   setLanguageSwitcher(event: any) {
-    this.translate.setDefaultLang(event.target.value);
     this.localeService.setLocale(event.target.value);
-    this.translate.use(event.target.value)
   }
 
 }

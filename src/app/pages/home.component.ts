@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,27 +9,24 @@ import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 })
 export class HomeComponent {
 
-  list: string[] = [];
+  list: any = [];
+  sub!: Subscription;
 
-  defaultLocale: string;
+  defaultLocale: string = '';
 
-  constructor(private translate: TranslateService) {
-
-    this.defaultLocale = translate.getDefaultLang();
-    console.log(`Home: ${this.defaultLocale}`);
-
-    this.translate.onLangChange
-    .subscribe((event: LangChangeEvent) => {
-      console.log(event.lang)
-    });
+  constructor(private translocoService: TranslocoService) {
 
   }
 
   ngOnInit(): void {
-    this.translate.stream('home.list')
-      .subscribe((translation: string[]) => {
-        this.list = translation
-      });
+    this.sub = this.translocoService.langChanges$.subscribe(() => {
+      console.log('language changed!');
+      this.translocoService.selectTranslate('home.list')
+      .subscribe(
+        value => this.list = value
+      );
+    });
+    this.sub.unsubscribe();
   }
 
 }

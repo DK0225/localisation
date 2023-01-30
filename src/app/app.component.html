@@ -13,11 +13,11 @@
 </div>
 
 
-<h1>{{ 'app.header' | translate }}</h1>
+<h1 *transloco="let t">{{ t("app.header") }}</h1>
 
 <div>
-  <p>{{ 'app.greeting' | translate }}</p>
-  <p>{{ 'app.example' | translate }}</p>
+  <p>{{ 'app.greeting' | transloco }}</p>
+  <p>{{ 'app.example' | transloco }}</p>
 </div>
 
 <div>

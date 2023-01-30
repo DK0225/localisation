@@ -1,7 +1,7 @@
-<h2>{{ 'home.header' | translate }}</h2>
+<h2>{{ 'home.header' | transloco }}</h2>
 
-<p>{{ 'home.example' | translate }}</p>
+<p>{{ 'home.example' | transloco }}</p>
 
 <ul *ngFor="let point of this.list">
-    <li>{{ point | translate }}</li>
+    <li *transloco="let t">{{ point }}</li>
   </ul>

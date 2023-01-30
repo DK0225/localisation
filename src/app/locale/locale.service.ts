@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
 
 declare interface Window {
   localStorage: any;
@@ -18,7 +19,7 @@ export class LocaleService {
   prefix: string;
   suffix: string;
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient, private translocoService : TranslocoService) { 
 
     this.prefix = "/assets/locales/";
     this.suffix = ".json"
@@ -27,6 +28,7 @@ export class LocaleService {
 
   public getTranslation(lang: string): Observable<any> {
     console.log(`${this.prefix}${lang}${this.suffix}`)
+    this.translocoService.setActiveLang(lang);
     return this.httpClient.get(`${this.prefix}${lang}${this.suffix}`);
   }
 
