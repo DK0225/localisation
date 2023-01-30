@@ -21,8 +21,11 @@ export class AppComponent {
 
   constructor(private localeService: LocaleService, private translate: TranslateService) { 
 
-    translate.setDefaultLang('en-gb');
-    translate.use('en-gb');
+    this.browserLocale = this.localeService.getBrowserLocale();
+    if (this.browserLocale) {
+      translate.setDefaultLang(this.browserLocale);
+      translate.use(this.browserLocale);
+    }
 
   }
 
