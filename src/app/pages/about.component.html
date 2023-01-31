@@ -1,3 +1,24 @@
 <h2>{{ 'about.header' | translate }}</h2>
 
 <p>{{ 'about.example' | translate }}</p>
+
+<p>Cost: {{ 100000.25 | currency: currencyCode:'symbol':undefined:locale }}</p>
+<p *ngIf="currencyCode">JS Cost: {{ 100000.25 | localecurrency: locale: currencyCode }}</p>
+
+<div *ngIf="locale != 'fr-fr'">
+    <label for="day">Day</label>
+    <input name="day" id="day" type="number">
+    <label for="month">Month</label>
+    <input name="month" id="month" type="number">
+    <label for="year">Year</label>
+    <input name="year" id="year" type="number">
+</div>
+
+<div *ngIf="locale === 'fr-fr'">
+    <label for="month">Month</label>
+    <input name="month" id="month" type="number">
+    <label for="day">Day</label>
+    <input name="day" id="day" type="number">
+    <label for="year">Year</label>
+    <input name="year" id="year" type="number">
+</div>

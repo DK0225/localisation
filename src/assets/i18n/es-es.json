@@ -1,4 +1,5 @@
 {
+    "currencyCode": "EUR",
     "app": {
         "header": "Localización",
         "greeting": "Hola Mundo !",

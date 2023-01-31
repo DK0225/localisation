@@ -1,4 +1,5 @@
 {
+    "currencyCode": "GBP",
     "app": {
         "header": "Localisation",
         "greeting": "Hello World!",

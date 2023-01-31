@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { LocaleService } from '../locale/locale.service';
 
 @Component({
   selector: 'app-home',
@@ -10,22 +10,12 @@ export class HomeComponent {
 
   list: string[] = [];
 
-  defaultLocale: string;
-
-  constructor(private translate: TranslateService) {
-
-    this.defaultLocale = translate.getDefaultLang();
-    console.log(`Home: ${this.defaultLocale}`);
-
-    this.translate.onLangChange
-    .subscribe((event: LangChangeEvent) => {
-      console.log(event.lang)
-    });
+  constructor(private localeService: LocaleService) {
 
   }
 
   ngOnInit(): void {
-    this.translate.stream('home.list')
+    this.localeService.streamValue('home.list')
       .subscribe((translation: string[]) => {
         this.list = translation
       });

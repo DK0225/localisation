@@ -11,6 +11,16 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import localeFrExtra from '@angular/common/locales/extra/fr';
+import localeEs from '@angular/common/locales/es';
+import localeEsExtra from '@angular/common/locales/extra/es';
+import { LocaleCurrencyPipe } from './locale/localecurrency.pipe';
+
+registerLocaleData(localeFr, 'fr-fr', localeFrExtra);
+registerLocaleData(localeEs, 'es-es', localeEsExtra);
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -20,7 +30,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    LocaleCurrencyPipe
   ],
   imports: [
     BrowserModule,

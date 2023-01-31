@@ -1,4 +1,5 @@
 export interface Locale {
+    currencyCode: string,
     app: {
       header: string,
       greeting: string,

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { LocaleService } from './locale/locale.service';
 import { Locale } from './locale/locale';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -11,39 +10,25 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'localisation';
 
-  defaultLocale: string = "";
-
   text!: Locale;
 
-  browserLocale: string | undefined = this.defaultLocale;
+  browserLocale: string | undefined;
 
   selectedValue: string = "";
 
-  constructor(private localeService: LocaleService, private translate: TranslateService) { 
+  currencyCode: string = "GBP";
+
+  constructor(private localeService: LocaleService) { 
 
     this.browserLocale = this.localeService.getBrowserLocale();
-    if (this.browserLocale) {
-      translate.setDefaultLang(this.browserLocale);
-      translate.use(this.browserLocale);
-    }
 
   }
 
   ngOnInit(): void {
-    this.defaultLocale = this.localeService.getDefaultLocale();
-
-    this.browserLocale = this.defaultLocale;
-
-    // if (this.browserLocale === undefined) {
-    //   this.browserLocale = this.defaultLocale;
-    // }
-
-    // this.selectedValue = this.browserLocale;
-
-    this.selectedValue = this.defaultLocale;
-
-    this.translate.use(this.selectedValue);
-
+    this.selectedValue = this.localeService.getDefaultLocale();
+    this.localeService.setLocale(this.selectedValue);
+    
+    this.currencyCode = this.localeService.getCurrencyCode();
   }
 
   ngOnDestroy(): void {
@@ -51,9 +36,12 @@ export class AppComponent {
   }
 
   setLanguageSwitcher(event: any) {
-    this.translate.setDefaultLang(event.target.value);
     this.localeService.setLocale(event.target.value);
-    this.translate.use(event.target.value)
+
+    this.localeService.streamValue('currencyCode')
+      .subscribe((translation: string) => {
+        this.currencyCode = translation;
+      })
   }
 
 }
