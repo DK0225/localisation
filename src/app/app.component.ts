@@ -10,8 +10,6 @@ import { Locale } from './locale/locale';
 export class AppComponent {
   title = 'localisation';
 
-  text!: Locale;
-
   browserLocale: string | undefined;
 
   selectedValue: string = "";
